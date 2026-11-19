@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}DisasterConnect{% endblock %}</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<div class="disclaimer"><div class="wrap">Academic prototype. In an emergency, call 112.</div></div>
+<header class="top"><div class="wrap"><a class="brand" href="/"><i></i>DisasterConnect</a>
+<button class="menu" aria-label="Menu" aria-expanded="false">☰ Menu</button>
+<nav><a href="/">Alerts</a><a href="/report">Report</a><a href="/incidents">Incidents</a>
+<a href="/guidelines">Safety guide</a><a href="/admin">Admin</a></nav></div></header>
+<main class="wrap">
+{% for cat, msg in get_flashed_messages(with_categories=true) %}<div class="flash {{cat}}" role="status"><span>{{msg}}</span><button aria-label="Dismiss">×</button></div>{% endfor %}
+{% block body %}{% endblock %}
+<footer>DisasterConnect is a cloud computing course project and does not replace official emergency services.</footer>
+</main><script src="{{ url_for('static', filename='app.js') }}"></script></body></html>

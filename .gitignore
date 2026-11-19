@@ -1,0 +1,13 @@
+
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+*.db
+*.sqlite
+*.sqlite3
+uploads/*
+!uploads/.gitkeep
+*.pem
+.DS_Store

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Safety guide{% endblock %}{% block body %}
+<h1>Safety guide</h1>
+<div class="chips" role="group" aria-label="Filter by disaster"><button class="chip on" data-type="all">All</button>
+{% for k in guides %}<button class="chip" data-type="{{k}}">{{ICONS[k]}} {{k}}</button>{% endfor %}</div>
+<div class="grid">{% for k,v in guides.items() %}<div class="panel" data-kind="{{k}}"><span class="ico">{{ICONS[k]}}</span><strong>{{k}}</strong><ul>{% for s in v %}<li>{{s}}</li>{% endfor %}</ul></div>{% endfor %}</div>
+<h2>Preparedness checklist</h2>
+<div class="panel"><strong id="ptext">0 ready</strong><div class="bar"><i id="fill"></i></div>
+{% for c in checklist %}<label class="check"><input type="checkbox"><span>{{c}}</span></label>{% endfor %}</div>
+<h2>Emergency numbers</h2><div class="sos">{% for n,num in CONTACTS %}<a href="tel:{{num}}"><b>{{num}}</b>{{n}}</a>{% endfor %}</div>{% endblock %}

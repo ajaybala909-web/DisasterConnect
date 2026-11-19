@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Incident reports{% endblock %}{% block body %}
+<h1>Incident reports</h1><p class="lead">Reports reviewed by an admin. Unverified reports are not shown.</p>
+<div class="chips" role="group" aria-label="Filter by disaster"><button class="chip on" data-type="all">All</button>
+{% for t in TYPES %}<button class="chip" data-type="{{t}}">{{ICONS[t]}} {{t}}</button>{% endfor %}</div>
+<div class="grid">{% for r in rows %}<div class="panel" data-kind="{{r.type}}"><span class="ico">{{ICONS[r.type]}}</span><strong>{{r.type}}</strong> <span class="badge {{r.status}}">{{r.status}}</span>
+<div>{{r.location}}</div><span class="meta">{{r.created}} UTC</span><p>{{r.description}}</p>
+{% if r.photo %}<img class="thumb" src="{{ r.photo|photo_url }}" alt="Photo of reported {{r.type|lower}}">{% endif %}</div>
+{% else %}<p class="panel">Nothing verified yet.</p>{% endfor %}</div>{% endblock %}

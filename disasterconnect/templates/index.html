@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block body %}
+<section class="hero"><span class="live"><i></i>{{ alerts|length }} active alert{{ '' if alerts|length==1 else 's' }}</span>
+<h1>Disaster near you? Act fast.</h1>
+<p>See live alerts, report what you see, and find safety steps and emergency numbers.</p>
+<div class="hero-actions"><a class="btn btn-primary btn-big" href="/report">🚨 Report an emergency</a>
+<a class="btn btn-ghost btn-big" href="tel:112">📞 Call 112</a><a class="btn btn-ghost btn-big" href="/guidelines">🛟 Safety guide</a></div></section>
+<h2>Emergency numbers</h2>
+<div class="sos">{% for n,num in CONTACTS %}<a href="tel:{{num}}"><b>{{num}}</b>{{n}}</a>{% endfor %}</div>
+<h2>Active alerts</h2>
+{% for a in alerts %}<div class="panel alert {{a.severity}}"><strong>{{a.title}}</strong> <span class="badge {{a.severity}}">{{a.severity}}</span>
+<p>{{a.body}}</p><span class="meta">{{a.created}} UTC</span></div>
+{% else %}<p class="panel">No active alerts. Admins publish alerts here.</p>{% endfor %}
+<h2>Verified incidents <a class="btn btn-ghost" style="padding:4px 14px;font-size:.9rem" href="/incidents">See all</a></h2>
+<div class="grid">{% for r in incidents %}<div class="panel"><span class="ico">{{ICONS[r.type]}}</span><strong>{{r.type}}</strong> <span class="badge {{r.status}}">{{r.status}}</span>
+<div>{{r.location}}</div><p>{{r.description}}</p>{% if r.photo %}<img class="thumb" src="{{ r.photo|photo_url }}" alt="Photo of reported {{r.type|lower}}">{% endif %}</div>
+{% else %}<p class="panel">No verified incidents right now.</p>{% endfor %}</div>{% endblock %}

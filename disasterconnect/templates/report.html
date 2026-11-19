@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Report an emergency{% endblock %}{% block body %}
+<h1>Report an emergency</h1>
+<p class="lead">If anyone is in danger, call 112 first. Then tell us what you see so others can be warned.</p>
+<form method="post" enctype="multipart/form-data" class="panel">
+<label for="type">What is happening?</label>
+<select id="type" name="type" required><option value="">Choose one</option>{% for t in TYPES %}<option value="{{t}}">{{ICONS[t]}} {{t}}</option>{% endfor %}</select>
+<label for="location">Location</label>
+<div class="row"><input id="location" name="location" placeholder="Area, landmark, city" required><button type="button" id="locate" class="btn-primary">📍 Use my location</button></div>
+<label for="description">Describe the situation</label><textarea id="description" name="description" rows="4" required></textarea>
+<label for="photo">Photo (optional)</label><input id="photo" type="file" name="photo" accept="image/*"><img id="preview" alt="Selected photo preview">
+<label for="reporter">Your name or phone (optional)</label><input id="reporter" name="reporter">
+<p><button type="submit" class="btn-primary btn-big">Send report</button> <a class="btn btn-ghost" href="tel:112">📞 Call 112</a></p></form>{% endblock %}
